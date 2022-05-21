@@ -1,0 +1,21 @@
+.nav{
+    background: #6bf59d;
+    color: white;
+}
+.link{
+    background: #2d3748;
+    border-radius: 40%;
+    height: 10px;
+    padding: 0;
+}
+.position-top {
+    margin-top: -50px;
+    z-index: 1;
+}
+.background-grey {
+    background-color: rgba(238, 232, 232, 0.904);
+}
+.button-success{
+    background-color: #086a08;
+    color: white;
+}
