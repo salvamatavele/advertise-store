@@ -25,6 +25,7 @@ class User extends Authenticatable
         'location',
         'blocked',
         'status',
+        'subscribe_id',
         'password',
     ];
 

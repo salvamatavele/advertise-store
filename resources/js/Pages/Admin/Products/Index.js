@@ -84,7 +84,7 @@ export default function Index(props) {
                                                 <td>{product.category}</td>
                                                 <td>
                                                     <a
-                                                        href=""
+                                                        href={route('admin.products.images',product.id)}
                                                         className="uk-link"
                                                     >
                                                         <span

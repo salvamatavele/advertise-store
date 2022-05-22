@@ -16,7 +16,7 @@ class HomeController extends Controller
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'products' => Product::orderByDesc('id')->take(8)->get(),
+            'products' => Product::with('user')->orderByDesc('id')->take(15)->get(),
         ]);
     }
 }

@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { Link } from '@inertiajs/inertia-react';
+import React, { useState } from "react";
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import Dropdown from "@/Components/Dropdown";
+import NavLink from "@/Components/NavLink";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { Link, InertiaLink } from "@inertiajs/inertia-react";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Authenticated({ auth, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] =
+        useState(false);
 
-    function logout() {
-        alert('logout')
-    }
     return (
         <div className="min-h-screen bg-gray-100">
             <nav className="bg-white border-b border-gray-100">
@@ -24,78 +23,94 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                <NavLink
+                                    href={route("dashboard")}
+                                    active={route().current("dashboard")}
+                                >
                                     Dashboard
                                 </NavLink>
-                                <NavLink href={route('admin.products')} active={route().current('admin.products')}>
+                                <NavLink
+                                    href={route("admin.products")}
+                                    active={route().current("admin.products")}
+                                >
                                     Produtos
                                 </NavLink>
-                                {auth.user && auth.user.admin === '1' &&
-                                <NavLink href={route('admin.users')} active={route().current('admin.users')}>
-                                    Usuarios
-                                </NavLink>
-                                }
+                                {auth.user && auth.user.admin === "1" && (
+                                    <NavLink
+                                        href={route("admin.users")}
+                                        active={route().current("admin.users")}
+                                    >
+                                        Usuarios
+                                    </NavLink>
+                                )}
                             </div>
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <div className="ml-3 relative">
-                                <Dropdown>
-                                    <Dropdown.Trigger>
-                                        <span className="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                className="inline-flex px-3 py-2 border border-transparent  leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                            >
-                                               Ola,  {auth.user.name + ' ' + auth.user.last_name}
-
-                                                <svg
-                                                    className="ml-2 -mr-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </Dropdown.Trigger>
-
-                                    <Dropdown.Content>
-                                        <Dropdown.Link  href="" method="post" as="button">
-                                             <strong>Controle da conta</strong>
-                                        </Dropdown.Link>
-
-                                        <Dropdown.Link   href={route('logout')} method="post" as="button">
-                                             Meu perfil
-                                        </Dropdown.Link>
-                                        <Dropdown.Link  href="" method="post" as="button">
-                                            Sair da conta
-                                        </Dropdown.Link>
-                                    </Dropdown.Content>
-                                </Dropdown>
+                                <button
+                                    className="uk-button-text"
+                                    type="button"
+                                >
+                                    Ola,
+                                    {auth.user.name + " " + auth.user.last_name} &#10095;
+                                    
+                                </button>
+                                <div uk-dropdown="mode: click">
+                                    <ul className="uk-nav uk-dropdown-nav">
+                                        <li className="uk-active">
+                                            <a href="#">
+                                                Gereciamento da conta
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Meu perfil</a>
+                                        </li>
+                                        <li className="uk-nav-divider"></li>
+                                        <li>
+                                            <a onClick={() => {
+                                                Inertia.post(route('logout'))
+                                            }}>
+                                                Sair da conta
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
 
                         <div className="-mr-2 flex items-center sm:hidden">
                             <button
-                                onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
+                                onClick={() =>
+                                    setShowingNavigationDropdown(
+                                        (previousState) => !previousState
+                                    )
+                                }
                                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                             >
-                                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <svg
+                                    className="h-6 w-6"
+                                    stroke="currentColor"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path
-                                        className={!showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                        className={
+                                            !showingNavigationDropdown
+                                                ? "inline-flex"
+                                                : "hidden"
+                                        }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
                                         d="M4 6h16M4 12h16M4 18h16"
                                     />
                                     <path
-                                        className={showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                        className={
+                                            showingNavigationDropdown
+                                                ? "inline-flex"
+                                                : "hidden"
+                                        }
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
                                         strokeWidth="2"
@@ -107,29 +122,51 @@ export default function Authenticated({ auth, header, children }) {
                     </div>
                 </div>
 
-                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
+                <div
+                    className={
+                        (showingNavigationDropdown ? "block" : "hidden") +
+                        " sm:hidden"
+                    }
+                >
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink
+                            href={route("dashboard")}
+                            active={route().current("dashboard")}
+                        >
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('admin.products')} active={route().current('admin.products')}>
+                        <ResponsiveNavLink
+                            href={route("admin.products")}
+                            active={route().current("admin.products")}
+                        >
                             Produtos
                         </ResponsiveNavLink>
-                        {auth.user && auth.user.admin === '1' &&
-                        <ResponsiveNavLink href={route('admin.users')} active={route().current('admin.users')}>
-                            Usuarios
-                        </ResponsiveNavLink>
-                        }
+                        {auth.user && auth.user.admin === "1" && (
+                            <ResponsiveNavLink
+                                href={route("admin.users")}
+                                active={route().current("admin.users")}
+                            >
+                                Usuarios
+                            </ResponsiveNavLink>
+                        )}
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
                         <div className="px-4">
-                            <div className="font-medium text-base text-gray-800">{auth.user.name}</div>
-                            <div className="font-medium text-sm text-gray-500">{auth.user.email}</div>
+                            <div className="font-medium text-base text-gray-800">
+                                {auth.user.name}
+                            </div>
+                            <div className="font-medium text-sm text-gray-500">
+                                {auth.user.email}
+                            </div>
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button">
+                            <ResponsiveNavLink
+                                method="post"
+                                href={route("logout")}
+                                as="button"
+                            >
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
@@ -139,7 +176,9 @@ export default function Authenticated({ auth, header, children }) {
 
             {header && (
                 <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
+                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {header}
+                    </div>
                 </header>
             )}
 
