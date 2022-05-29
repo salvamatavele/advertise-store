@@ -26,34 +26,30 @@ export default function Products(props) {
                 >
                     {data?.map((product) => (
                         <li key={product.id}>
-                            {product.user.status === 1 &&
-                                product.user.blocked === 0 &&
-                                (product.user.subscribe_id > 0 && (
-                                    <div className="uk-card uk-card-default">
-                                        <div className="uk-card-media-top uk-flex uk-flex-center">
-                                            <img
-                                                src={`/${product.image_path}`}
-                                                height="100"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="uk-card-body">
-                                            <h3 className="uk-card-title">
-                                                {product.name}
-                                            </h3>
-                                            <p>{product.price} .00 MZN</p>
-                                            <Link
-                                                className="uk-button button-success uk-width-1-1 uk-margin-small-bottom"
-                                                href={route(
-                                                    "products.show",
-                                                    product.id
-                                                )}
-                                            >
-                                                +Detalhes
-                                            </Link>
-                                        </div>
-                                    </div>
-                                ))}
+                            <div className="uk-card uk-card-default">
+                                <div className="uk-card-media-top uk-flex uk-flex-center">
+                                    <img
+                                        src={`/${product.image_path}`}
+                                        height="100"
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="uk-card-body">
+                                    <h3 className="uk-card-title">
+                                        {product.name}
+                                    </h3>
+                                    <p>{product.price} .00 MZN</p>
+                                    <Link
+                                        className="uk-button button-success uk-width-1-1 uk-margin-small-bottom"
+                                        href={route(
+                                            "products.show",
+                                            product.id
+                                        )}
+                                    >
+                                        +Detalhes
+                                    </Link>
+                                </div>
+                            </div>
                         </li>
                     ))}
                     {data.length === 0 && <>Nenhum produto encontrado</>}

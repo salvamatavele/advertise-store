@@ -224,11 +224,7 @@ export default function Home(props) {
                                     </li>
                                 </>
                             )}
-                            {products?.map(
-                                (product) =>
-                                    product.user.blocked === 0 &&
-                                    product.user.blocked === 0 &&
-                                    product.user.subscribe_id > 0 && (
+                            {products?.map((product) =>
                                         <li key={product.id}>
                                             <div className="uk-card uk-card-default">
                                                 <div className="uk-card-media-top uk-flex uk-flex-center">
@@ -257,7 +253,6 @@ export default function Home(props) {
                                                 </div>
                                             </div>
                                         </li>
-                                    )
                             )}
                         </ul>
 

@@ -14,32 +14,27 @@ export default function Dashboard(props) {
             }
         >
             <Head title="Dashboard" />
-            {props.auth.user.admin !== "1" && props.auth.user.subscribe_id > 0 && (
-                <>
-                    <div className="uk-alert-success" uk-alert="true">
-                        <a className="uk-alert-close" uk-close="true" />
-                        <p>
-                            Ola!{props.auth.user.name}{" "}
-                            {props.auth.user.last_name} Estas a usar a versao de
-                            teste do sisema LURIMA, tens 30 dias para testar e
-                            desfrutar do melhor do sistema.
-                        </p>
-                    </div>
-                    <div className="uk-alert-success" uk-alert="true">
-                        <a className="uk-alert-close" uk-close="true" />
-                        <p>
-                            Entre em contacto com a equipa da lutima para
-                            qualquer esclarecimento ou caso queira subscrever se
-                            aos nossos servicos.
-                        </p>
-                    </div>
-                </>
-            )}
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="relative flex  justify-center   sm:pt-0">
                             <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                                {props.auth.user.admin !== "1" && props.auth.user.subscribe_id > 0 && (
+                                    <>
+                                        <div className="uk-alert-warning" uk-alert="true">
+                                            <a className="uk-alert-close" uk-close="true" />
+                                            <p>
+                                                Ola! {props.auth.user.name}
+                                                {props.auth.user.last_name} Estas a usar a versao de
+                                                teste do sisema LURIMA, tens 30 dias para testar e
+                                                desfrutar do melhor do sistema.<br/>
+                                                Entre em contacto com a equipa da lutima para
+                                                qualquer esclarecimento ou caso queira subscrever se
+                                                aos nossos servicos.
+                                            </p>
+                                        </div>
+                                    </>
+                                )}
                                 <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                                     <div className="grid grid-cols-1 md:grid-cols-2">
                                         <div className="p-6">
